@@ -37,6 +37,10 @@ values."
      syntax-checking
      version-control
      clojure
+     javascript
+     ruby
+     yaml
+     themes-megapack
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -262,7 +266,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "05411251e1232959144334e4359f8af0931c6c1a2f3a109d0d9e6753b6dfecfe" default))))
+    ("a2e7b508533d46b701ad3b055e7c708323fb110b6676a8be458a758dd8f24e27" "a164837cd2821475e1099911f356ed0d7bd730f13fa36907895f96a719e5ac3e" "95db78d85e3c0e735da28af774dfa59308db832f84b8a2287586f5b4f21a7a5b" "868f73b5cf78e72ca2402e1d48675e49cc9a9619c5544af7bf216515d22b58e7" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "05411251e1232959144334e4359f8af0931c6c1a2f3a109d0d9e6753b6dfecfe" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
