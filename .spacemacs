@@ -23,7 +23,8 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t)
      emacs-lisp
      osx
      git
@@ -45,7 +46,8 @@ values."
      yaml
      themes-megapack
      (ruby :variables
-           ruby-version-manager 'rbenv)
+           ruby-version-manager 'rbenv
+           ruby-enable-ruby-on-rails-support t)
      ruby-on-rails
      ansible
      dockerfile
@@ -87,7 +89,7 @@ values."
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
    ;; unchanged. (default 'vim)
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style 'hybrid
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -244,7 +246,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'changed
    ))
 
 (defun dotspacemacs/user-init ()
@@ -272,7 +274,8 @@ you should place your code here."
    powerline-default-separator 'arrow)
 
   (spaceline-compile)
-  (add-hook 'ruby-mode-hook 'fci-mode))
+  (add-hook 'ruby-mode-hook 'fci-mode)
+  (global-company-mode))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -283,7 +286,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("a2e7b508533d46b701ad3b055e7c708323fb110b6676a8be458a758dd8f24e27" "a164837cd2821475e1099911f356ed0d7bd730f13fa36907895f96a719e5ac3e" "95db78d85e3c0e735da28af774dfa59308db832f84b8a2287586f5b4f21a7a5b" "868f73b5cf78e72ca2402e1d48675e49cc9a9619c5544af7bf216515d22b58e7" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "05411251e1232959144334e4359f8af0931c6c1a2f3a109d0d9e6753b6dfecfe" default))))
+    ("3b0a350918ee819dca209cec62d867678d7dac74f6195f5e3799aa206358a983" "e9776d12e4ccb722a2a732c6e80423331bcb93f02e089ba2a4b02e85de1cf00e" "a2e7b508533d46b701ad3b055e7c708323fb110b6676a8be458a758dd8f24e27" "a164837cd2821475e1099911f356ed0d7bd730f13fa36907895f96a719e5ac3e" "95db78d85e3c0e735da28af774dfa59308db832f84b8a2287586f5b4f21a7a5b" "868f73b5cf78e72ca2402e1d48675e49cc9a9619c5544af7bf216515d22b58e7" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "05411251e1232959144334e4359f8af0931c6c1a2f3a109d0d9e6753b6dfecfe" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
