@@ -24,23 +24,31 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      auto-completion
-     better-defaults
      emacs-lisp
      osx
      git
      markdown
      org
+     search-engine
+
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
      spell-checking
      syntax-checking
      version-control
+     (version-control :variables
+                      version-control-global-margin t
+                      version-control-diff-tool 'diff-hl)
      clojure
      javascript
-     ruby
      yaml
      themes-megapack
+     (ruby :variables
+           ruby-version-manager 'rbenv)
+     ruby-on-rails
+     ansible
+     dockerfile
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -212,7 +220,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -255,7 +263,16 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  )
+  (setq-default
+   fill-column 100
+   require-final-newline t
+   flycheck-disabled-checkers '(ruby-rubylint)
+   js2-basic-offset 2
+   js-indent-level 2
+   powerline-default-separator 'arrow)
+
+  (spaceline-compile)
+  (add-hook 'ruby-mode-hook 'fci-mode))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
