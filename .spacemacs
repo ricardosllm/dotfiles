@@ -288,10 +288,17 @@ you should place your code here."
 
   (add-hook 'ruby-mode-hook 'fci-mode)
   (global-company-mode)
-  (defadvice switch-to-buffer (before save-buffer-now activate)
-    (when buffer-file-name (save-buffer)))
-  (defadvice other-window (before other-window-now activate)
-    (when buffer-file-name (save-buffer)))
+
+  ;; (defadvice switch-to-buffer (before save-buffer-now activate)
+  ;;   (when buffer-file-name (save-buffer)))
+  ;; (defadvice other-window (before other-window-now activate)
+  ;;   (when buffer-file-name (save-buffer)))
+
+  (add-hook 'focus-out-hook
+            (defun save-current-buffer-if-needed ()
+              (interactive)
+              (when (and (buffer-file-name) (buffer-modified-p))
+                (save-buffer))))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
