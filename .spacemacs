@@ -33,7 +33,6 @@ values."
      markdown
      org
      search-engine
-
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -43,17 +42,24 @@ values."
      (version-control :variables
                       version-control-global-margin t
                       version-control-diff-tool 'diff-hl)
+
+     ;; languages
      clojure
      javascript
      yaml
-     themes-megapack
      (ruby :variables
            ruby-version-manager 'rbenv
            ruby-enable-ruby-on-rails-support t)
      ruby-on-rails
+     html
      ansible
      dockerfile
+
+     ;; tools
      dash
+
+     ;; generic
+     themes-megapack
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
