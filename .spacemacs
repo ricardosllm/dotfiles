@@ -57,6 +57,7 @@ values."
 
      ;; tools
      dash
+     evernote
 
      ;; generic
      themes-megapack
@@ -289,6 +290,7 @@ you should place your code here."
   (add-hook 'ruby-mode-hook 'fci-mode)
   (global-company-mode)
 
+  (diff-hl-flydiff-mode)
   ;; (defadvice switch-to-buffer (before save-buffer-now activate)
   ;;   (when buffer-file-name (save-buffer)))
   ;; (defadvice other-window (before other-window-now activate)
