@@ -301,6 +301,10 @@ you should place your code here."
               (interactive)
               (when (and (buffer-file-name) (buffer-modified-p))
                 (save-buffer))))
+
+  ;; word motions
+  (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
