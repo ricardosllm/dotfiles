@@ -304,7 +304,12 @@ you should place your code here."
 
   ;; word motions
   (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+
   (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
+  (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?< "w")))
+  (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?> "w")))
+
+  (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
