@@ -309,6 +309,7 @@ you should place your code here."
   (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?< "w")))
   (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?> "w")))
 
+  ;; Cider cider config
   (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
   )
 
