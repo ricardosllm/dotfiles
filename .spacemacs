@@ -314,6 +314,7 @@ you should place your code here."
 
   ;; After save hooks
   (add-hook 'after-save-hook 'evil-escape)
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
