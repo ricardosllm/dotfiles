@@ -311,6 +311,9 @@ you should place your code here."
 
   ;; Cider cider config
   (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
+
+  ;; After save hooks
+  (add-hook 'after-save-hook 'evil-escape)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
