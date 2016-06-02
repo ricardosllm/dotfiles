@@ -315,6 +315,9 @@ you should place your code here."
   ;; After save hooks
   (add-hook 'after-save-hook 'evil-escape)
 
+  ;; Movements
+  (global-set-key (kbd "<s-right>") 'move-end-of-line)
+  (global-set-key (kbd "<s-left>") 'move-beginning-of-line)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
