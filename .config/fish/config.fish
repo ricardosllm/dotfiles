@@ -24,6 +24,14 @@ set -x DOCKER_HOST tcp://192.168.59.103:2376
 set -x DOCKER_CERT_PATH /Users/ricardo/.boot2docker/certs/boot2docker-vm
 set -x DOCKER_TLS_VERIFY 1
 
+# Keybinding
+function fish_user_key_bindings
+  bind \cj down-or-search
+  bind \ck up-or-search
+  bind \ch backward-char
+  bind \cl forward-char
+end
+
 # UI
 set normal (set_color normal)
 set magenta (set_color magenta)
