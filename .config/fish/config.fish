@@ -44,9 +44,9 @@ alias docker-up='bash --login "/Applications/Docker/Docker Quickstart Terminal.a
 set -x GOPATH ~/Go/
 #set -x GOROOT /usr/local/opt/go/libexec
 
-set PATH /Applications/Postgres.app/Contents/Versions/9.4/bin $PATH
+# set PATH /Applications/Postgres.app/Contents/Versions/9.4/bin $PATH
 
-set -x NODE_PATH /usr/local/lib/node_modules
+# set -x NODE_PATH /usr/local/lib/node_modules
 
 # Keybinding
 function fish_user_key_bindings
