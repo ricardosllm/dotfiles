@@ -288,7 +288,7 @@ you should place your code here."
   (spaceline-compile)
 
   (add-hook 'ruby-mode-hook 'fci-mode)
-  (global-company-mode)
+  ;; (global-company-mode)
 
   (diff-hl-flydiff-mode)
   ;; (defadvice switch-to-buffer (before save-buffer-now activate)
