@@ -26,7 +26,8 @@ values."
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t
-                      auto-completion-enable-sort-by-usage t)
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-private-snippets-directory "~/d/dotfiles/snippets")
      emacs-lisp
      osx
      git
@@ -122,8 +123,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(brin
-                         wilson
+   dotspacemacs-themes '(;; wilson
                          spacemacs-dark
                          spacemacs-light
                          solarized-light
@@ -139,7 +139,7 @@ values."
                                :size 17
                                :weight normal
                                :width normal
-                               :powerline-scale 1.5)
+                               :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -238,7 +238,7 @@ values."
    dotspacemacs-line-numbers t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode nil
+   dotspacemacs-smartparens-strict-mode t
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
@@ -290,12 +290,9 @@ you should place your code here."
 
   (add-hook 'ruby-mode-hook 'fci-mode)
   ;; (global-company-mode)
+  ;; (add-hook 'after-init-hook 'global-company-mode)
 
   (diff-hl-flydiff-mode)
-  ;; (defadvice switch-to-buffer (before save-buffer-now activate)
-  ;;   (when buffer-file-name (save-buffer)))
-  ;; (defadvice other-window (before other-window-now activate)
-  ;;   (when buffer-file-name (save-buffer)))
 
   (add-hook 'focus-out-hook
             (defun save-current-buffer-if-needed ()
@@ -311,7 +308,7 @@ you should place your code here."
   (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?< "w")))
   (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?> "w")))
 
-  ;; Cider cider config
+  ;; Cider config
   (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
 
   ;; After save hooks
@@ -320,6 +317,9 @@ you should place your code here."
   ;; Movements
   (global-set-key (kbd "<s-right>") 'move-end-of-line)
   (global-set-key (kbd "<s-left>") 'move-beginning-of-line)
+
+  ;; Org mode
+  (setq org-export-with-sub-superscripts nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
