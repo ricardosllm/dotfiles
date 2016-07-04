@@ -25,8 +25,9 @@ values."
      ;; ----------------------------------------------------------------
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
-                      auto-completion-enable-help-tooltip t
-                      auto-completion-enable-sort-by-usage t)
+                      auto-completion-enable-help-tooltip nil
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-private-snippets-directory "~/d/dotfiles/snippets")
      emacs-lisp
      osx
      git
