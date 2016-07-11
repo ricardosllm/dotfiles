@@ -51,9 +51,12 @@ values."
      (ruby :variables
            ruby-version-manager 'rbenv
            ruby-enable-ruby-on-rails-support t)
-     ruby-on-rails
      html
+
+     ;; frameworks
+     salt
      ansible
+     ruby-on-rails
      dockerfile
 
      ;; tools
