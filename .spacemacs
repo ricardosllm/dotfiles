@@ -289,7 +289,8 @@ you should place your code here."
    flycheck-disabled-checkers '(ruby-rubylint)
    js2-basic-offset 2
    js-indent-level 2
-   powerline-default-separator 'arrow)
+   powerline-default-separator 'arrow
+   spaceline-minor-modes-p nil)
 
   (spaceline-compile)
 
