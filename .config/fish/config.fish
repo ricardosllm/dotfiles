@@ -1,5 +1,8 @@
 alias ll='ls -lah'
 
+# Editor
+set -x EDITOR emacs
+
 # App alias
 alias e='emacsclient -n'
 alias subl='open -a "Sublime Text"'
