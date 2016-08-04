@@ -17,7 +17,7 @@ alias gitx='open -a "GitX"'
 alias gitpp='git stash; git pull --rebase; git push; git stash pop'
 alias gg='git grep'
 alias gitc='git checkout'
-alias gs='git status'
+alias gits='git status'
 alias gd='git diff'
 alias gitp='git stash; git pull --rebase; git stash pop'
 
