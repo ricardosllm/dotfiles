@@ -18,7 +18,7 @@ alias gitpp='git stash; git pull --rebase; git push; git stash pop'
 alias gg='git grep'
 alias gitc='git checkout'
 alias gits='git status'
-alias gd='git diff'
+alias gitd='git diff'
 alias gitp='git stash; git pull --rebase; git stash pop'
 
 # Rails
