@@ -26,6 +26,11 @@ alias rs='set -x RAILS_ENV test; bundle exec rspec'
 alias rw='set -x RAILS_ENV test; bundle exec rake xv_workers:work'
 alias rc='set -x RAILS_ENV development; bundle exec rails c'
 
+# Locale
+set -x LC_ALL en_US.UTF-8
+set -x LC_CTYPE en_US.UTF-8
+set -x LANG en_US.UTF-8
+
 # Fish config for rbenv https://jeremywsherman.com/blog/2015/07/28/using-rbenv-with-fish/
 set PATH "$HOME/.rbenv/shims" $PATH
 rbenv rehash ^/dev/null
