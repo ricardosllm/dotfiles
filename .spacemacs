@@ -315,7 +315,7 @@ you should place your code here."
   (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?> "w")))
 
   ;; Cider config
-  (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
+  ;; (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
 
   ;; After save hooks
   (add-hook 'after-save-hook 'evil-escape)
