@@ -52,6 +52,7 @@ values."
            ruby-version-manager 'rbenv
            ruby-enable-ruby-on-rails-support t)
      html
+     lua
 
      ;; frameworks
      salt
