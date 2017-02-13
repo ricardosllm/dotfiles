@@ -351,6 +351,7 @@ you should place your code here."
    spaceline-minor-modes-p nil
    hybrid-mode-enable-hjkl-bindings t
    tab-width 2
+   ruby-insert-encoding-magic-comment nil
    )
 
   (spaceline-compile)
