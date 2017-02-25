@@ -59,6 +59,9 @@ set -x GOPATH ~/Go/
 
 # set -x NODE_PATH /usr/local/lib/node_modules
 
+# Conda
+source ~/d/dotfiles/.config/fish/conda.fish
+
 # Keybinding
 function fish_user_key_bindings
   bind \cj history-search-forward
