@@ -59,7 +59,8 @@ set -x GOPATH ~/Go/
 
 # set -x NODE_PATH /usr/local/lib/node_modules
 
-# Conda
+# Anaconda
+set PATH $PATH /Users/ricardo/anaconda3/bin
 source ~/d/dotfiles/.config/fish/conda.fish
 
 # Keybinding
@@ -83,7 +84,7 @@ function fish_prompt
 	# set_color white
 	# # printf '[%s] ' (date "+%j %H:%M:%S")
 	# printf '%s ' (date "+%D %H:%M:%S")
-	# set_color normal
+  # set_color normal
 
 	set_color red
 	printf '%s' (whoami)
