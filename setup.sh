@@ -3,6 +3,7 @@
 # install brew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+# Emacs
 # clone spacemacs
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
@@ -19,3 +20,8 @@ emacs --insecure
 
 # Source code font 
 # https//github.com/adobe-fonts/source-code-pro
+
+# Todo.txt
+brew install todo-txt
+rm ~/.todo.cfg
+ln -s $PWD/.todo.cfg ~/.todo.cfg
