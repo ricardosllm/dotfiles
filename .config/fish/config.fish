@@ -1,11 +1,12 @@
 alias ll='ls -lah'
 
 # Editor
-set -x EDITOR 'emacsclient -n'
+set -x EDITOR 'emacsclient -nw'
 set -x VISUAL 'emacsclient -n'
 
 # App alias
 alias e='emacsclient -n'
+alias et='emacsclient -nw'
 alias subl='open -a "Sublime Text"'
 alias webstorm='open -a "WebStorm"'
 alias cursive='open -a "IntelliJ IDEA 15 CE"'
@@ -22,9 +23,16 @@ alias gitd='git diff'
 alias gitp='git stash; git pull --rebase; git stash pop'
 
 # Rails
-alias rs='set -x RAILS_ENV test; bundle exec rspec'
-alias rw='set -x RAILS_ENV test; bundle exec rake xv_workers:work'
-alias rc='set -x RAILS_ENV development; bundle exec rails c'
+alias rs='set RAILS_ENV test; bundle exec rspec'
+alias rw='set RAILS_ENV test; bundle exec rake xv_workers:work'
+alias rc='set RAILS_ENV development; bundle exec rails c'
+alias railss='set RAILS_ENV development; bundle exec rails s'
+
+# Todo.txt
+alias t='/usr/local/Cellar/todo-txt/2.10/bin/todo.sh -d ~/.todo.cfg'
+
+# Homebrew
+set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 
 # Locale
 set -x LC_ALL en_US.UTF-8
