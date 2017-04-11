@@ -435,10 +435,21 @@ you should place your code here."
                                      (car (last pair))))))
 
   (require 'whitespace)
-  (setq whitespace-line-column 100) ;; limit line length
+  (setq whitespace-line-column 80) ;; limit line length
   (setq whitespace-style '(face lines-tail))
 
   (add-hook 'prog-mode-hook 'whitespace-mode)
+  
+  ;; Python
+  (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
+  (pyenv-mode)
+  (setq-default dotspacemacs-configuration-layers
+                '((python :variables python-test-runner '(pytest nose))))
+  (setq-default dotspacemacs-configuration-layers
+                '((python :variables python-enable-yapf-format-on-save t)))
+  (add-hook 'python-mode-hook 'anaconda-mode)
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
