@@ -1,7 +1,7 @@
 alias ll='ls -lah'
 
 # Editor
-set -x EDITOR 'emacsclient -nw'
+set -x EDITOR 'vim'
 set -x VISUAL 'emacsclient -n'
 
 # App alias
