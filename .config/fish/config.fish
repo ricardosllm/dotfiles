@@ -67,9 +67,12 @@ set -x GOPATH ~/Go/
 
 # set -x NODE_PATH /usr/local/lib/node_modules
 
-# Anaconda
+# Python
+## Anaconda
 set PATH $PATH /Users/ricardo/anaconda3/bin
 source ~/d/dotfiles/.config/fish/conda.fish
+## Virtualenv
+eval (python -m virtualfish compat_aliases)
 
 # Keybinding
 function fish_user_key_bindings
