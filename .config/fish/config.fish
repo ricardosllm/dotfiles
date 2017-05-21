@@ -61,11 +61,6 @@ alias docker-up='bash --login "/Applications/Docker/Docker Quickstart Terminal.a
 
 # Golang
 set -x GOPATH ~/Go/
-#set -x GOROOT /usr/local/opt/go/libexec
-
-# set PATH /Applications/Postgres.app/Contents/Versions/9.4/bin $PATH
-
-# set -x NODE_PATH /usr/local/lib/node_modules
 
 # Python
 ## Anaconda
@@ -73,6 +68,10 @@ set PATH $PATH /Users/ricardo/anaconda3/bin
 source ~/d/dotfiles/.config/fish/conda.fish
 ## Virtualenv
 eval (python -m virtualfish compat_aliases)
+
+set DYLD_LIBRARY_PATH `/usr/local/cuda/lib`:$DYLD_LIBRARY_PATH
+
+set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 
 # Keybinding
 function fish_user_key_bindings
