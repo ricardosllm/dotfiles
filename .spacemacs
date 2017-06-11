@@ -473,7 +473,6 @@ you should place your code here."
                 '((python :variables python-enable-yapf-format-on-save t)))
   (add-hook 'python-mode-hook 'anaconda-mode)
   (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-  (add-to-list 'python-shell-extra-pythonpaths "/Users/ricardo/x/xv_sysadmin/python")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
