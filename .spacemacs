@@ -466,7 +466,6 @@ you should place your code here."
   ;; Python
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
-  (pyenv-mode)
   (setq-default dotspacemacs-configuration-layers
                 '((python :variables python-test-runner 'nose)))
   (setq-default dotspacemacs-configuration-layers
