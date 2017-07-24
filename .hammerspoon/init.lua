@@ -52,32 +52,3 @@ remap({'ctrl', 'cmd', 'alt', 'shift'}, 'j', pressFn({'cmd', 'alt', 'shift'}, 'do
 remap({'ctrl', 'cmd', 'alt', 'shift'}, 'k', pressFn({'cmd', 'alt', 'shift'}, 'up'))
 remap({'ctrl', 'cmd', 'alt', 'shift'}, 'l', pressFn({'cmd', 'alt', 'shift'}, 'right')
 )
-
-hs.execute('/Applications/Karabiner.app/Contents/Library/bin/karabiner select 0')
-
-local usb_table = nil
-
-usb_table = hs.usb.attachedDevices()
-
-programmable_keyboard_pid = "0x0101" -- from system_profiler
-
-for index, usb_device in pairs(usb_table) do
-	if (usb_device["productID"] == programmable_keyboard_pid) then
-		hs.execute('/Applications/Karabiner.app/Contents/Library/bin/karabiner select 1')
-	end
-end
-
-local usbWatcher = nil
-
-function usbDeviceCallback(data)
-    if (data["productID"] == programmable_keyboard_pid) then
-        if (data["eventType"] == "added") then
-            hs.execute('/Applications/Karabiner.app/Contents/Library/bin/karabiner select 1')
-        elseif (data["eventType"] == "removed") then
-            hs.execute('/Applications/Karabiner.app/Contents/Library/bin/karabiner select 0')
-        end
-    end
-end
-
-usbWatcher = hs.usb.watcher.new(usbDeviceCallback)
-usbWatcher:start()
