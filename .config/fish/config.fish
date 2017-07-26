@@ -23,7 +23,7 @@ alias gitd='git diff'
 alias gitp='git stash; git pull --rebase; git stash pop'
 
 # Rails
-alias rs='bin/docker-exec rspec'
+# alias rs='set RAILS_ENV test; bundle exec rspec'
 alias rw='set RAILS_ENV test; bundle exec rake xv_workers:work'
 alias rc='set RAILS_ENV development; bundle exec rails c'
 alias railss='set RAILS_ENV development; bundle exec rails s'
@@ -54,6 +54,11 @@ function rbenv
         case '*'
             command rbenv "$command" $argv
     end
+end
+
+function rs
+  set paths (string split '/spec' $argv)
+  eval "bin/docker-exec rspec spec$paths[2]"
 end
 
 # Docker
