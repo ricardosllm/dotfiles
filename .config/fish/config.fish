@@ -23,7 +23,7 @@ alias gitd='git diff'
 alias gitp='git stash; git pull --rebase; git stash pop'
 
 # Rails
-alias rs='set RAILS_ENV test; bundle exec rspec'
+alias rs='bin/docker-exec rspec'
 alias rw='set RAILS_ENV test; bundle exec rake xv_workers:work'
 alias rc='set RAILS_ENV development; bundle exec rails c'
 alias railss='set RAILS_ENV development; bundle exec rails s'
@@ -66,8 +66,6 @@ set -x GOPATH ~/Go/
 ## Anaconda
 set PATH $PATH /Users/ricardo/anaconda3/bin
 source ~/d/dotfiles/.config/fish/conda.fish
-## Virtualenv
-eval (python -m virtualfish compat_aliases)
 
 set DYLD_LIBRARY_PATH `/usr/local/cuda/lib`:$DYLD_LIBRARY_PATH
 
