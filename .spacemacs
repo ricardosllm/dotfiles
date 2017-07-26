@@ -83,7 +83,7 @@ values."
      ;; salt
      ansible
      ruby-on-rails
-     dockerfile
+     docker
 
      ;; tools
      dash
