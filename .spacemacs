@@ -78,6 +78,9 @@ values."
            ruby-enable-ruby-on-rails-support t)
      html
      lua
+     c-c++
+     semantic
+
 
      ;; frameworks
      ;; salt
