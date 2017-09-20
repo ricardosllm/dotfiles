@@ -469,12 +469,6 @@ you should place your code here."
   ;; Python
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
-  (setq-default dotspacemacs-configuration-layers
-                '((python :variables python-test-runner 'nose)))
-  (setq-default dotspacemacs-configuration-layers
-                '((python :variables python-enable-yapf-format-on-save t)))
-  (add-hook 'python-mode-hook 'anaconda-mode)
-  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
