@@ -23,7 +23,6 @@ alias gitd='git diff'
 alias gitp='git stash; git pull --rebase; git stash pop'
 
 # Rails
-# alias rs='set RAILS_ENV test; bundle exec rspec'
 alias rw='set RAILS_ENV test; bundle exec rake xv_workers:work'
 alias rc='docker-compose exec rails rails c'
 alias ru='docker-compose up -d'
@@ -69,7 +68,6 @@ set -x GOPATH ~/Go/
 
 # Python
 ## Anaconda
-set PATH $PATH /Users/ricardo/anaconda3/bin
 source ~/d/dotfiles/.config/fish/conda.fish
 
 set DYLD_LIBRARY_PATH `/usr/local/cuda/lib`:$DYLD_LIBRARY_PATH
