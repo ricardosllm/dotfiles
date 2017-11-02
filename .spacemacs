@@ -469,6 +469,9 @@ you should place your code here."
   ;; Python
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
+  (setq python-shell-interpreter "ipython"
+        python-shell-interpreter-args "-i")
+  (setenv "IPY_TEST_SIMPLE_PROMPT" "1")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
