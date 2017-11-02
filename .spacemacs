@@ -380,6 +380,12 @@ you should place your code here."
    tab-width 2
    ruby-insert-encoding-magic-comment nil
    )
+  
+  ;; Only check on save
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (evil-start-track-last-insertion
+   (lambda nil
+     (flycheck-mode -1)))
 
   (spaceline-compile)
 
