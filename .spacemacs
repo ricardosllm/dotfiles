@@ -380,7 +380,11 @@ you should place your code here."
    tab-width 2
    ruby-insert-encoding-magic-comment nil
    )
-  
+  (global-set-key (kbd "<s-right>") 'move-end-of-line)
+  (global-set-key (kbd "<s-left>") 'move-beginning-of-line)
+  ;; ~~> 'Y' yanks till the end of line instead of yanking the whole line.
+  (define-key evil-normal-state-map (kbd "Y") (kbd "y$"))
+
   ;; Only check on save
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (evil-start-track-last-insertion
@@ -437,8 +441,6 @@ you should place your code here."
   (add-hook 'after-save-hook 'evil-escape)
 
   ;; Movements
-  (global-set-key (kbd "<s-right>") 'move-end-of-line)
-  (global-set-key (kbd "<s-left>") 'move-beginning-of-line)
   (spacemacs/set-leader-keys-for-major-mode 'clojure-mode "j" 'paredit-join-sexps)
   (spacemacs/set-leader-keys-for-major-mode 'clojure-mode "o" 'paredit-split-sexp)
   (spacemacs/set-leader-keys-for-major-mode 'clojure-mode "w" 'paredit-wrap-sexp)
