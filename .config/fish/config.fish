@@ -17,6 +17,7 @@ alias java6='set -x JAVA_HOME /System/Library/Java/JavaVirtualMachines/1.6.0.jdk
 alias gitx='open -a "GitX"'
 alias gitpp='git stash; git pull --rebase; git push; git stash pop'
 alias gg='git grep'
+alias gp='git pull --rebase'
 alias gitc='git checkout'
 alias gits='git status'
 alias gitd='git diff'
