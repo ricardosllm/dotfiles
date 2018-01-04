@@ -1,5 +1,9 @@
 #!/bin/sh -x
 
+# iTerm2 profile
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder $PWD/iterm2_profile/com.googlecode.iterm2.plist
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
 # install brew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
