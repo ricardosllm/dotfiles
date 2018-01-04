@@ -36,3 +36,5 @@ curl https://www.fontsquirrel.com/fonts/download/fira-mono > fira-mono.zip && \
 
 brew cask install osxfuse
 brew install git encfs
+
+git config --global alias.co checkout
