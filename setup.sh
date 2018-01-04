@@ -27,3 +27,4 @@ emacs --insecure
 # Source code font 
 # https//github.com/adobe-fonts/source-code-pro
 
+brew install git
