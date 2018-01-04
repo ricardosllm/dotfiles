@@ -30,5 +30,9 @@ emacs --insecure
 
 # Source code font 
 # https//github.com/adobe-fonts/source-code-pro
+curl https://www.fontsquirrel.com/fonts/download/fira-mono > fira-mono.zip && \
+  unzip fira-mono.zip -d ~/Library/Fonts/ && \
+  rm fira-mono.zip
 
-brew install git
+brew cask install osxfuse
+brew install git encfs
