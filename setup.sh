@@ -35,6 +35,6 @@ curl https://www.fontsquirrel.com/fonts/download/fira-mono > fira-mono.zip && \
   rm fira-mono.zip
 
 brew cask install osxfuse
-brew install git encfs
+brew install git encfs the_silver_searcher
 
 git config --global alias.co checkout
