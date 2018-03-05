@@ -351,7 +351,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-
+  ;; Workaround for issue https://github.com/syl20bnr/spacemacs/issues/8090
   (load-file "~/.emacs.d/elpa/25.3/dash-20180206.2124/dash.el")
   (load-file "~/.emacs.d/elpa/25.3/autothemer-20170112.1324/autothemer.el")
   )
