@@ -68,6 +68,9 @@ alias docker-up='bash --login "/Applications/Docker/Docker Quickstart Terminal.a
 set -x GOPATH ~/Go/
 
 # Python
+## Get python2 executable in latest MacOS: brew install python2
+set PATH "/usr/local/opt/python@2/bin" $PATH
+
 ## Anaconda
 source ~/d/dotfiles/.config/fish/conda.fish
 
