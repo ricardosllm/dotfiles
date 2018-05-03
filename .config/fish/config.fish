@@ -44,23 +44,6 @@ set -x LC_ALL en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
 set -x LANG en_US.UTF-8
 
-# Fish config for rbenv https://jeremywsherman.com/blog/2015/07/28/using-rbenv-with-fish/
-set PATH "$HOME/.rbenv/shims" $PATH
-rbenv rehash ^/dev/null
-function rbenv
-    set -l command $argv[1]
-    if test (count $argv) -gt 1
-        set argv $argv[2..-1]
-    end
-
-    switch "$command"
-        case rehash shell
-            eval (rbenv "sh-$command" $argv)
-        case '*'
-            command rbenv "$command" $argv
-    end
-end
-
 # Docker
 alias docker-up='bash --login "/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh"'
 
