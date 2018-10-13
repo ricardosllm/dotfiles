@@ -33,6 +33,9 @@ function rs
   eval "bin/docker-exec rspec spec$paths[2]"
 end
 
+# Code
+alias gini='cd ~/g/gini-app'
+
 # Todo.txt
 alias t='/usr/local/Cellar/todo-txt/2.10/bin/todo.sh -d ~/.todo.cfg'
 
@@ -60,6 +63,12 @@ source ~/d/dotfiles/.config/fish/conda.fish
 set DYLD_LIBRARY_PATH `/usr/local/cuda/lib`:$DYLD_LIBRARY_PATH
 
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
+
+# Google repo
+set PATH "~/bin" $PATH
+function repo
+    ~/bin/repo
+end
 
 # Keybinding
 function fish_user_key_bindings
