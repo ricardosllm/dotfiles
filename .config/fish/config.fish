@@ -2,10 +2,10 @@ alias ll='ls -lah'
 
 # Editor
 set -x EDITOR 'vim'
-set -x VISUAL 'emacsclient -n'
+set -x VISUAL 'emacsclient -n --socket-name=/Users/ricardo/.emacs.d/server/server'
 
 # App alias
-alias e='emacsclient -n'
+alias e='emacsclient -n --socket-name=/Users/ricardo/.emacs.d/server/server'
 alias et='emacsclient -nw'
 alias subl='open -a "Sublime Text"'
 alias webstorm='open -a "WebStorm"'
@@ -57,18 +57,16 @@ set -x GOPATH ~/Go/
 ## Get python2 executable in latest MacOS: brew install python2
 set PATH "/usr/local/opt/python@2/bin" $PATH
 
-## Anaconda
-source ~/d/dotfiles/.config/fish/conda.fish
-
-set DYLD_LIBRARY_PATH `/usr/local/cuda/lib`:$DYLD_LIBRARY_PATH
-
-set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
-
 # Google repo
 set PATH "~/bin" $PATH
 function repo
     ~/bin/repo
 end
+
+# Android build tools
+set PATH $PATH "~/Library/Android/sdk/build-tools/28.0.2"
+set PATH $PATH "/usr/local/opt/texinfo/bin"
+alias aapt="~/Library/Android/sdk/build-tools/28.0.2/aapt"
 
 # Keybinding
 function fish_user_key_bindings
