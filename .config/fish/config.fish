@@ -2,10 +2,10 @@ alias ll='ls -lah'
 
 # Editor
 set -x EDITOR 'vim'
-set -x VISUAL 'emacsclient -n --socket-name=/Users/ricardo/.emacs.d/server/server'
+set -x VISUAL 'emacsclient -n'
 
 # App alias
-alias e='emacsclient -n --socket-name=/Users/ricardo/.emacs.d/server/server'
+alias e='emacsclient -n'
 alias et='emacsclient -nw'
 alias subl='open -a "Sublime Text"'
 alias webstorm='open -a "WebStorm"'

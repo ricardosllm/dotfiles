@@ -11,6 +11,7 @@ defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 brew tap d12frosted/emacs-plus
 brew install emacs-plus
 brew linkapps emacs-plus
+ln -s /usr/local/Cellar/emacs-plus/*/Emacs.app/ /Applications/
 # clone spacemacs
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
@@ -28,12 +29,15 @@ ln -s $PWD/.hammerspoon/init.lua ~/.hammerspoon/init.lua
 
 emacs --insecure 
 
-# Source code font 
-# https//github.com/adobe-fonts/source-code-pro
-curl https://www.fontsquirrel.com/fonts/download/fira-mono > fira-mono.zip && \
-  unzip fira-mono.zip -d ~/Library/Fonts/ && \
-  rm fira-mono.zip
+# Install fonts
+brew tap caskroom/fonts
+brew cask install font-source-code-pro
+brew cask install font-fira-mono
 
+# Install grep with detault names
+brew install grep --with-default-names
+
+# Install other dependencies 
 brew cask install osxfuse
 brew install git encfs the_silver_searcher
 
