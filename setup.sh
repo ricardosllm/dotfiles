@@ -27,7 +27,10 @@ ln -s $PWD/.emacs.d/private/snippets ~/.emacs.d/private/snippets
 # Hammerspoon config
 ln -s $PWD/.hammerspoon/init.lua ~/.hammerspoon/init.lua
 
-emacs --insecure 
+# Install clj-kondo
+bash <(curl -s https://raw.githubusercontent.com/borkdude/clj-kondo/master/script/install-clj-kondo)
+# brew install borkdude/brew/clj-kondo
+
 
 # Install fonts
 brew tap caskroom/fonts
@@ -42,3 +45,15 @@ brew cask install osxfuse
 brew install git encfs the_silver_searcher
 
 git config --global alias.co checkout
+
+sh -c '. "$HOME"/.nix-profile/etc/profile.d/nix.sh && nix run nixpkgs.coreutils -c install -m 644 -D "$(nix-build \'<nixpkgs>\' -A fish-foreign-env)"/share/fish-foreign-env/functions/*.fish -t "$HOME"/.config/fish/functions'
+echo 'fenv source ~/.nix-profile/etc/profile.d/nix.sh' > ~/.config/fish/conf.d/00-nixify.fish
+
+
+# Start emacs and install all required packages
+emacs --insecure
+
+
+# TODO
+# [] - Make it work with nix pkg manager
+# [] - Make it work on an EC2 env

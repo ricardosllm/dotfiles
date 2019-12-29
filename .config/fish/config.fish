@@ -1,4 +1,4 @@
-alias ll='ls -lah'
+alias ll='/bin/ls -lah'
 
 # Editor
 set -x EDITOR 'vim'
@@ -114,3 +114,4 @@ function fish_prompt
 	printf "$red➤ "
 	set_color normal
 end
+
