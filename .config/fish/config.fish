@@ -1,4 +1,4 @@
-alias ll='/bin/ls -lah'
+alias ll='ls -lah'
 
 # Editor
 set -x EDITOR 'vim'
