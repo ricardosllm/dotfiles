@@ -1,4 +1,4 @@
-alias ll='ls -lah'
+alias ll='/bin/ls -lah'
 
 # Editor
 set -x EDITOR 'vim'
@@ -115,3 +115,16 @@ function fish_prompt
 	set_color normal
 end
 
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /Users/ricardo/g/gini-app/ginfra/.tmp/repos/gini-db-powerup/node_modules/tabtab/.completions/serverless.fish ]; and . /Users/ricardo/g/gini-app/ginfra/.tmp/repos/gini-db-powerup/node_modules/tabtab/.completions/serverless.fish
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /Users/ricardo/g/gini-app/ginfra/.tmp/repos/gini-db-powerup/node_modules/tabtab/.completions/sls.fish ]; and . /Users/ricardo/g/gini-app/ginfra/.tmp/repos/gini-db-powerup/node_modules/tabtab/.completions/sls.fish
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[ -f /Users/ricardo/g/gini-app/ginfra/.tmp/repos/gini-db-powerup/node_modules/tabtab/.completions/slss.fish ]; and . /Users/ricardo/g/gini-app/ginfra/.tmp/repos/gini-db-powerup/node_modules/tabtab/.completions/slss.fish
+
+# https://starship.rs/guide/#%F0%9F%9A%80-installation
+starship init fish | source
