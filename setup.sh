@@ -36,6 +36,7 @@ bash <(curl -s https://raw.githubusercontent.com/borkdude/clj-kondo/master/scrip
 brew tap caskroom/fonts
 brew cask install font-source-code-pro
 brew cask install font-fira-mono
+brew cask install secure-pipes
 
 # Install grep with detault names
 brew install grep --with-default-names

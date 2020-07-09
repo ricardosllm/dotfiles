@@ -47034,13 +47034,13 @@
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>522 663 400 129 0 0 1920 1177 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>2834 243 700 622 0 0 1920 1177 </string>
+	<string>1250 866 700 622 0 0 3200 1777 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>400 168 606 469 0 0 1920 1177 </string>
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>153 611 918 494 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1065 1777 0 0 3200 1777 </string>
+	<string>2 0 1595 1777 0 0 3200 1777 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>5040 -620 1440 1263 5040 -623 1440 2537 </string>
 	<key>New Bookmarks</key>
@@ -48003,26 +48003,27 @@
 	</array>
 	<key>NoSyncAllAppVersions</key>
 	<array>
-		<string>3.3.6</string>
-		<string>3.3.8</string>
-		<string>3.3.2</string>
-		<string>3.3.1</string>
 		<string>3.3.5</string>
-		<string>3.3.7</string>
-		<string>3.3.9</string>
+		<string>3.3.1</string>
+		<string>3.3.8</string>
+		<string>3.3.6</string>
+		<string>3.3.11</string>
 		<string>3.3.0beta15</string>
-		<string>3.3.0</string>
-		<string>3.2.9</string>
 		<string>3.3.4</string>
+		<string>3.3.2</string>
+		<string>3.3.9</string>
+		<string>3.2.9</string>
+		<string>3.3.0</string>
+		<string>3.3.7</string>
 	</array>
 	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
 	<true/>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{-1920, -183}, {1920, 1200}}</string>
+		<string>{{0, 0}, {3840, 2160}}</string>
 		<key>topLeft</key>
-		<string>{-1768, 800}</string>
+		<string>{1394, 1441}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -48031,7 +48032,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>D10DC0B4-0248-49C9-AA1B-AA8F04779E26</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>38</integer>
+	<integer>45</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -48768,6 +48769,10 @@
 	<real>547006002.89452899</real>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>2</integer>
+	<key>PMPrintingExpandedStateForPrint2</key>
+	<false/>
+	<key>PasteTabToStringTabStopSize</key>
+	<integer>4</integer>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -48803,6 +48808,8 @@
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string>/Users/ricardo/d/dotfiles/iterm2_profile</string>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
@@ -48812,13 +48819,13 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-04-15T00:44:56Z</date>
+	<date>2020-07-08T04:34:15Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
-	<integer>1666992574</integer>
+	<integer>3142065823</integer>
 	<key>SUUpdateRelaunchingMarker</key>
-	<false/>
+	<true/>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>SoundForEsc</key>
@@ -48834,7 +48841,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.9</string>
+	<string>3.3.11</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>

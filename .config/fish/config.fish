@@ -7,6 +7,7 @@ set -x VISUAL 'emacsclient -n'
 # App alias
 alias e='emacsclient -n'
 alias et='emacsclient -nw'
+
 alias subl='open -a "Sublime Text"'
 alias webstorm='open -a "WebStorm"'
 alias cursive='open -a "IntelliJ IDEA 15 CE"'
