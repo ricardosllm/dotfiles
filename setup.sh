@@ -23,6 +23,7 @@ rm ~/.config/fish/config.fish
 ln -s $PWD/.config/fish/config.fish ~/.config/fish/config.fish
 ln -s $PWD/.spacemacs ~/.spacemacs
 ln -s $PWD/.emacs.d/private/snippets ~/.emacs.d/private/snippets
+ln -s $PWD/.zshrc ~/.zshrc
 
 # Hammerspoon config
 ln -s $PWD/.hammerspoon/init.lua ~/.hammerspoon/init.lua
