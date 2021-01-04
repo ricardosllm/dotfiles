@@ -1,5 +1,5 @@
-if [ -e /Users/ricardo/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ricardo/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-eval "$(direnv hook zsh)"
+# if [ -e /Users/ricardo/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ricardo/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# eval "$(direnv hook zsh)"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -14,7 +14,8 @@ export ZSH="/Users/ricardo/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="agnoster"
-ZSH_THEME="spaceship"
+# ZSH_THEME="spaceship"
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -125,4 +126,5 @@ alias gitp='git stash; git pull --rebase; git stash pop'
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# source $(nix-env -q --out-path --no-name spaceship-prompt)/lib/spaceship-prompt/spaceship.zsh
+
+# source "/Users/ricardo/.oh-my-zsh/custom/themes/spaceship.zsh-theme"

@@ -305,8 +305,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font or prioritized list of fonts.
    ;; dotspacemacs-default-font '("Source Code Pro"
-   ;; dotspacemacs-default-font '("Fira Mono"
-   dotspacemacs-default-font '("JetBrains Mono"
+   dotspacemacs-default-font '("Fira Mono"
                                :size 16
                                :weight normal
                                :width normal
