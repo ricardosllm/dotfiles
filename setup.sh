@@ -21,6 +21,7 @@ brew install \
      ispell \
      direnv \
      zsh-syntax-highlighting \
+     spectacle \
      emacs-plus@27 --with-spacemacs-icon
 
 # zsh
@@ -46,7 +47,6 @@ brew install --cask \
      osxfuse \
      secure-pipes \
      zerotier-one \
-     rectangle \
      hammerspoon \
      font-source-code-pro \
      font-fira-mono \
