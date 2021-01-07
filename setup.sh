@@ -22,6 +22,7 @@ brew install \
      direnv \
      zsh-syntax-highlighting \
      spectacle \
+     awscli \
      emacs-plus@27 --with-spacemacs-icon
 
 # zsh
