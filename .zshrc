@@ -1,5 +1,6 @@
-# if [ -e /Users/ricardo/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ricardo/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-# eval "$(direnv hook zsh)"
+if [ -e /Users/ricardo/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ricardo/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+eval "$(direnv hook zsh)"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -108,12 +109,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll='ls -lah'
-alias e='emacsclient -n'
-alias et='emacsclient -nw'
+alias e='emacsclient -n -s ~/.emacs.d/server-socket/server'
+alias et='emacsclient -nw -s ~/.emacs.d/server-socket/server'
 
 alias subl='open -a "Sublime Text"'
 alias finder='open -a "Finder"'
-alias java6='export JAVA_HOME /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home; echo "Changed JAVA_HOME to JDK 1.6"; java -version'
 
 # Git
 alias gitpp='git stash; git pull --rebase; git push; git stash pop'

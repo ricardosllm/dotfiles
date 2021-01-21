@@ -493,7 +493,7 @@ It should only modify the values of Spacemacs settings."
    ;; like \"~/.emacs.d/server\". It has no effect if
    ;; `dotspacemacs-enable-server' is nil.
    ;; (default nil)
-   dotspacemacs-server-socket-dir nil ;; "~/.emacs.d/server-socket"
+   dotspacemacs-server-socket-dir "~/.emacs.d/server-socket"
 
    ;; If non nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
