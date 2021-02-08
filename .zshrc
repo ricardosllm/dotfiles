@@ -4,6 +4,7 @@ eval "$(direnv hook zsh)"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/opt/homebrew/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/ricardo/.oh-my-zsh"
@@ -79,6 +80,7 @@ ZSH_THEME="robbyrussell"
 plugins=(
     osx
     git
+    zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh

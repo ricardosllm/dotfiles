@@ -10,6 +10,7 @@ This function should only modify configuration layer settings."
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
    dotspacemacs-distribution 'spacemacs
+
    ;; Lazy installation of layers (i.e. layers are installed only when a file
    ;; with a supported type is opened). Possible values are `all', `unused'
    ;; and `nil'. `unused' will lazy install only unused layers (i.e. layers
@@ -45,14 +46,13 @@ This function should only modify configuration layer settings."
 
      ;; For Spacemacs configuration files and packages
      emacs-lisp
-     ;; sql
      vimscript
      python
      shell-scripts
      csv
      osx
      markdown
-     sql
+     ;; sql
 
      ;; Add tool tips to show doc string of functions
      ;; Show snippets in the autocompletion popup
@@ -75,28 +75,20 @@ This function should only modify configuration layer settings."
      ;; (syntax-checking :variables
      ;;                  syntax-checking-use-original-bitmaps t)
 
-     version-control
-     (version-control :variables
-                      version-control-global-margin t
-                      version-control-diff-tool 'diff-hl)
-     (git :variables
-          git-enable-github-support t)
+     git
      github
+     version-control
 
      ;; languages
 
      ;; https://develop.spacemacs.org/layers/+lang/clojure/README.html
      (clojure :variables
-              clojure-toplevel-inside-comment-form t
-              cider-overlays-use-font-lock t
-              clojure-enable-linters 'clj-kondo
-              cider-preferred-build-tool 'clojure-cli)
+              clojure-enable-fancify-symbols t
+              clojure-enable-clj-refactor t
+              clojure-enable-linters '(clj-kondo joker)
+              clojure-enable-sayid nil
+              clojure-backend 'cider)
 
-     ;; To add the sayid debugger, include the following as a variable above
-     ;; clojure-enable-sayid t
-
-     ;; Add the Joker linter for real-time linting in Clojure
-     ;; Requires local install of Joker tool
      ;; clojure-lint
      javascript
      yaml
@@ -140,6 +132,11 @@ This function should only modify configuration layer settings."
 
      ;; multiple-cursors
      ;; treemacs
+
+     ;; TODO: try
+     deft
+     imenu-list
+     syntax-checking
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -305,7 +302,8 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font or prioritized list of fonts.
    ;; dotspacemacs-default-font '("Source Code Pro"
-   dotspacemacs-default-font '("Fira Mono"
+   dotspacemacs-default-font '(
+                               "Fira Mono"
                                :size 16
                                :weight normal
                                :width normal
@@ -537,7 +535,7 @@ It should only modify the values of Spacemacs settings."
    ;; `trailing' to delete only the whitespace at end of lines, `changed' to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup `all
+   dotspacemacs-whitespace-cleanup `trailing
 
    ;; If non nil activate `clean-aindent-mode' which tries to correct
    ;; virtual indentation of simple modes. This can interfer with mode specific
@@ -620,46 +618,6 @@ before packages are loaded."
   (setq projectile-enable-caching t)
   (setq term-char-mode-point-at-process-mark nil)
 
-  ;; Do not highlight trailing whitespace
-  ;; - whitespace deleted on save using: dotspacemacs-whitespace-cleanup 'all
-  (setq spacemacs-show-trailing-whitespace nil)
-
-   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; Safe structural editing
-  ;; for all major modes
-  (spacemacs/toggle-evil-safe-lisp-structural-editing-on-register-hooks)
-  ;; for clojure layer only (comment out line above)
-  ;; (spacemacs/toggle-evil-safe-lisp-structural-editing-on-register-hook-clojure-mode)
-  ;;
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; Version Control configuration - Git, etc
-  ;;
-  ;; diff-hl - diff hightlights in right gutter as you type
-  (diff-hl-flydiff-mode)
-  ;;
-  ;; Load in magithub features after magit package has loaded
-  ;; (use-package magithub
-  ;;   :after magit
-  ;;   :config (magithub-feature-autoinject t))
-  ;;
-  ;; Use Spacemacs as the $EDITOR (or $GIT_EDITOR) for git commits messages
-  ;; when using git commit on the command line
-  (global-git-commit-mode t)
-  ;;
-  ;; Set locations of all your Git repositories
-  ;; with a number to define how many sub-directories to search
-  ;; `SPC g L' - list all Git repositories in the defined paths,
-  ;; (setq magit-repository-directories
-  ;;       '(("~/.emacs.d"  . 0)
-  ;;         ("~/projects/" . 2)))
-  ;;
-  ;; end of version control configuration
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-  (spacemacs/toggle-smartparens-globally-on)
-
   ;; Python
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
@@ -682,194 +640,14 @@ before packages are loaded."
   (add-hook 'clojurescript-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
   (add-hook 'clojurescript-mode-hook #'(lambda () (modify-syntax-entry ?< "w")))
   (add-hook 'clojurescript-mode-hook #'(lambda () (modify-syntax-entry ?> "w")))
-  ;;
-  ;;
-  ;; CIDER 0.23 Lima release options
-  ;; Configure the position of evaluation result
-  ;; By default the result displays at the end of the current line
-  ;; Set cider-result-overlay-position to `at-point' to display results right after the expression evaluated
-  ;; Useful for evaluating nexsted expressions with `, e e'
-  (setq cider-result-overlay-position 'at-point)
-  ;;
-  ;;
-  ;; Pretty print in Clojure to use the Fast Idiomatic Pretty-Printer.
-  ;; This is approximately 5-10x faster than clojure.core/pprint
-  (setq cider-pprint-fn 'fipp)
-  ;;
-  ;;
-  ;; Indentation of function forms
-  ;; https://github.com/clojure-emacs/clojure-mode#indentation-of-function-forms
-  (setq clojure-indent-style 'align-arguments)
-  ;;
-  ;; Vertically align s-expressions
-  ;; https://github.com/clojure-emacs/clojure-mode#vertical-alignment
-  (setq clojure-align-forms-automatically t)
-  ;;
-  ;; Auto-indent code automatically
-  ;; https://emacsredux.com/blog/2016/02/07/auto-indent-your-code-with-aggressive-indent-mode/
-  (add-hook 'clojure-mode-hook #'aggressive-indent-mode)
-  ;;
-  ;;
-  ;; Local Clojure and Java sources
-  ;; Extract the clojure-x.x.x-sources.jar and Java src.zip files
-  ;; Extracted files enable use of search tools (ripgrep, ag).
-  ;; https://docs.cider.mx/cider/config/basic_config.html#_use_a_local_copy_of_the_java_source_code
-  ;; (setq cider-jdk-src-paths '("~/projects/java/clojure-1.10.1-sources"
-  ;;                             "~/projects/java/openjdk-11/src"))
-  ;;
-  ;;
-  ;; anakondo - static analysis using clj-kondo
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; https://github.com/didibus/anakondo
-  ;; Provides auto-completion without the need for a REPL
-  ;; Add anakondo to `dotspacemacs-additional-packages` list
-  ;;
-  ;; `SPC SPC anakondo-minor-mode' to run manually for the current project.
-  ;;
-  ;; Commented until static analysis is an optional or background process
-  ;; https://github.com/didibus/anakondo/issues/1
-  ;;
-  ;; Lazy load of anakondo until Clojure buffer is used
-  ;; (autoload 'anakondo-minor-mode "anakondo")
-  ;;
-  ;; Enable anakondo-minor-mode in all Clojure buffers
-  ;; (add-hook 'clojure-mode-hook #'anakondo-minor-mode)
-  ;; Enable anakondo-minor-mode in all ClojureScript buffers
-  ;; (add-hook 'clojurescript-mode-hook #'anakondo-minor-mode)
-  ;; Enable anakondo-minor-mode in all cljc buffers
-  ;; (add-hook 'clojurec-mode-hook #'anakondo-minor-mode)
-  ;;
-  ;;
-  ;;
-  ;; LSP server for Clojure with clj-kondo
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; An alternative approach to the Clojure layer variable clojure-enable-linters 'clj-kondo
-  ;; for those environments where the clj-kondo binary does not run (eg. graal).
-  ;; Uses a custom script to run the clj-kondo-lsp-server.jar which should be added
-  ;; to the operating system path and include:
-  ;; java -jar ~/path/to/clj-kondo-lsp-server-standalone.jar
-  ;; (use-package lsp-mode
-  ;;   :ensure t
-  ;;   :hook ((clojure-mode . lsp))
-  ;;   :commands lsp
-  ;;   :custom ((lsp-clojure-server-command '("clojure-lsp-server-clj-kondo")))
-  ;;   :config (dolist  (m '(clojure-mode clojurescript-mode))
-  ;;             (add-to-list 'lsp-language-id-configuration `(,m . "clojure"))))
-  ;;
-  ;;
-  ;; TODO: review this binding - gives poor user experience
-  ;; Multi-line editing in the REPL buffer
-  ;; `RTN` creates a new line, `C-RTN` evaluates the code
-  ;; Multi-line editing in the REPL buffer
-  ;; (add-hook 'cider-repl-mode-hook
-  ;;           '(lambda ()
-  ;;              (define-key cider-repl-mode-map (kbd "RET") #'cider-repl-newline-and-indent)
-  ;;              (define-key cider-repl-mode-map (kbd "C-<return>") #'cider-repl-return)))
-  ;;
-  ;;
-  ;; TODO: review this binding
-  ;; repl history keybindings - not used - use s-<up> and s-<down> which are the defaults
-  ;; (add-hook 'cider-repl-mode-hook
-  ;;           '(lambda ()
-  ;;              (define-key cider-repl-mode-map (kbd "<up>") 'cider-repl-previous-input)
-  ;;              (define-key cider-repl-mode-map (kbd "<down>") 'cider-repl-next-input)))
-  ;;
-  ;;
-  ;; hook for command-line-mode - shows keybindings & commands in separate buffer
-  ;; load command-line-mode when opening a clojure file
-  ;; (add-hook 'clojure-mode-hook 'command-log-mode)
-  ;;
-  ;; turn on command-log-mode when opening a source code or text file
-  ;; (add-hook 'prog-mode-hook 'command-log-mode)
-  ;; (add-hook 'text-mode-hook 'command-log-mode)
-  ;;
-  ;; toggle reader macro sexp comment
-  ;; toggles the #_ characters at the start of an expression
-  (defun clojure-toggle-reader-comment-sexp ()
-    (interactive)
-    (let* ((point-pos1 (point)))
-      (evil-insert-line 0)
-      (let* ((point-pos2 (point))
-             (cmtstr "#_")
-             (cmtstr-len (length cmtstr))
-             (line-start (buffer-substring-no-properties point-pos2 (+ point-pos2 cmtstr-len)))
-             (point-movement (if (string= cmtstr line-start) -2 2))
-             (ending-point-pos (+ point-pos1 point-movement 1)))
-        (if (string= cmtstr line-start)
-            (delete-char cmtstr-len)
-          (insert cmtstr))
-        (goto-char ending-point-pos)))
-    (evil-normal-state))
-  ;;
-  ;; Assign keybinding to the toggle-reader-comment-sexp function
-  (define-key global-map (kbd "C-#") 'clojure-toggle-reader-comment-sexp)
-  ;;
-  ;; Evaluate code when it is contained in a (comment (,,,))
-  ;; 24th sept - didnt work, even after updating spacemacs and packages
-  ;; (setq cider-eval-toplevel-inside-comment-form t)
-  ;;
-  ;; (add-hook 'clojure-mode-hook
-  ;;           '(setq cider-eval-toplevel-inside-comment-form t))
-  ;;
-  ;;
-  ;; Toggle view of a clojure `(comment ,,,) block'
-  ;;
-  (defun clojure-hack/toggle-comment-block (arg)
-    "Close all top level (comment) forms. With universal arg, open all."
-    (interactive "P")
-    (save-excursion
-      (goto-char (point-min))
-      (while (search-forward-regexp "^(comment\\>" nil 'noerror)
-        (call-interactively
-         (if arg 'evil-open-fold
-           'evil-close-fold)))))
-  ;;
-  (evil-define-key 'normal clojure-mode-map
-    "zC" 'clojure-hack/toggle-comment-block
-    "zO" (lambda () (interactive) (clojure-hack/toggle-comment-block 'open)))
-  ;;
-  ;;
-  ;; Experiment: Start Clojure REPL with a specific profile
-  ;; https://stackoverflow.com/questions/18304271/how-do-i-choose-switch-leiningen-profiles-with-emacs-nrepl
-  ;;
-  ;; (defun start-cider-repl-with-profile ()
-  ;;   (interactive)
-  ;;   (letrec ((profile (read-string "Enter profile name: "))
-  ;;            (lein-params (concat "with-profile +" profile " repl :headless")))
-  ;;     (message "lein-params set to: %s" lein-params)
-  ;;     (set-variable 'cider-lein-parameters lein-params)
-  ;;     (cider-jack-in)))
-  ;;
-  ;; My altered more idiomatic version, hopefully
-  ;; - seems to be a bug...
-  ;; (defun start-cider-repl-with-profile (profile)
-  ;;   (interactive "sEnter profile name: ")
-  ;;   (letrec ((lein-params (concat "with-profile +" profile " repl :headless")))
-  ;;     (message "lein-params set to: %s" lein-params)
-  ;;     (set-variable 'cider-lein-parameters lein-params)
-  ;;     (cider-jack-in)))
-  ;;
-  ;;
-  ;; Hook for command-log-mode
-  ;; shows keybindings & commands in separate buffer
-  ;; Load command-log-mode when opening a clojure file
-  ;; (add-hook 'clojure-mode-hook 'command-log-mode)
-  ;;
-  ;; Turn on command-log-mode when opening a source code or text file
-  ;; (add-hook 'prog-mode-hook 'command-log-mode)
-  ;; (add-hook 'text-mode-hook 'command-log-mode)
-  ;;
-  ;;
-  ;; end of clojure configuration
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 
   ;; Javascript
   (add-hook 'js-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'js-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
 
-
   (direnv-mode)
+
+  (add-to-list 'projectile-globally-ignored-directories "*node_modules")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -908,6 +686,8 @@ This function is called at the very end of Spacemacs initialization."
  '(custom-safe-themes
    '("4b19d61c560a93ef90767abe513c11f236caec2864617d718aa366618133704c" "b89ae2d35d2e18e4286c8be8aaecb41022c1a306070f64a66fd114310ade88aa" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "cd4d1a0656fee24dc062b997f54d6f9b7da8f6dc8053ac858f15820f9a04a679" "3f44e2d33b9deb2da947523e2169031d3707eec0426e78c7b8a646ef773a2077" default))
  '(evil-want-Y-yank-to-eol nil)
+ '(magit-status-sections-hook
+   '(magit-insert-merge-log magit-insert-rebase-sequence magit-insert-am-sequence magit-insert-sequencer-sequence magit-insert-bisect-output magit-insert-bisect-rest magit-insert-bisect-log magit-insert-untracked-files magit-insert-unstaged-changes magit-insert-staged-changes magit-insert-stashes magit-insert-unpushed-to-pushremote magit-insert-unpushed-to-upstream-or-recent magit-insert-unpulled-from-pushremote magit-insert-unpulled-from-upstream))
  '(package-selected-packages
    '(rjsx-mode import-js grizzl add-node-modules-path flyspell-correct-helm flyspell-correct auto-dictionary autothemer dash magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht zenburn-theme zen-and-art-theme yapfify yaml-mode xterm-color wsd-mode ws-butler winum white-sand-theme which-key web-mode web-beautify volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme toc-org tide typescript-mode flycheck tern-auto-complete tern tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit sunny-day-theme sublime-themes subatomic256-theme subatomic-theme stickyfunc-enhance srefactor sql-indent spaceline powerline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode shell-pop seti-theme scss-mode sass-mode reverse-theme reveal-in-osx-finder restart-emacs rebecca-theme rainbow-mode rainbow-identifiers rainbow-delimiters railscasts-theme pyvenv pytest pyenv-mode py-isort purple-haze-theme pug-mode professional-theme popwin planet-theme pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el pbcopy paradox osx-trash osx-dictionary orgit organic-green-theme org-plus-contrib org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme nix-mode neotree naquadah-theme mwim mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc markdown-mode majapahit-theme magit-gitflow magit-popup madhat2r-theme macrostep lush-theme lorem-ipsum livid-mode skewer-mode simple-httpd live-py-mode linum-relative link-hint light-soap-theme launchctl js2-refactor js2-mode js-doc jbeans-theme jazz-theme ir-black-theme insert-shebang inkpot-theme indent-guide hy-mode dash-functional hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation heroku-theme hemisu-theme helm-themes helm-swoop helm-pydoc helm-projectile projectile helm-nixos-options helm-mode-manager helm-make helm-gtags helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme haml-mode gruber-darker-theme graphql-mode grandshell-theme gotham-theme google-translate golden-ratio gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md ggtags gandalf-theme fuzzy flx-ido flx flatui-theme flatland-theme fish-mode fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exotica-theme exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree espresso-theme eshell-z eshell-prompt-extras esh-help engine-mode emmet-mode elisp-slime-nav dumb-jump dracula-theme dockerfile-mode docker transient tablist json-mode docker-tramp json-snatcher json-reformat django-theme direnv diminish diff-hl darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme dactyl-mode cython-mode cyberpunk-theme csv-mode company-web web-completion-data company-statistics company-shell company-quickhelp pos-tip company-nixos-options nixos-options company-anaconda company command-log-mode column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized color-identifiers-mode coffee-mode clues-theme clojure-snippets clj-refactor hydra inflections multiple-cursors paredit lv clean-aindent-mode cider-eval-sexp-fu eval-sexp-fu cider sesman spinner queue pkg-info parseedn clojure-mode parseclj a epl cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme bind-map bind-key badwolf-theme auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed apropospriate-theme anti-zenburn-theme anaconda-mode pythonic f s ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adoc-mode markup-faces adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup gruvbox-theme))
  '(safe-local-variable-values
