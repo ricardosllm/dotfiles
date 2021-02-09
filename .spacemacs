@@ -51,7 +51,7 @@ This function should only modify configuration layer settings."
      shell-scripts
      csv
      osx
-     markdown
+     ;; markdown
      ;; sql
 
      ;; Add tool tips to show doc string of functions

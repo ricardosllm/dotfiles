@@ -130,3 +130,5 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 # source "/Users/ricardo/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+
+PROMPT='%{$fg[yellow]%}[%D{%f/%m/%y} %D{%L:%M:%S}] '$PROMPT
