@@ -32,7 +32,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(haskell
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -62,7 +62,7 @@ This function should only modify configuration layer settings."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t)
      ;; To have auto-completion on as soon as you start typing
-     ;; (auto-completion :variables auto-completion-idle-delay nil)
+     (auto-completion :variables auto-completion-idle-delay nil)
 
      ;; org
      search-engine
@@ -610,6 +610,16 @@ before packages are loaded."
   ;; After save hooks
   (add-hook 'after-save-hook 'evil-escape)
 
+  (defun bk/magit-display-diff-other-window (buffer)
+    "Display BUFFER in same-window but for magit-diff use other-window instead."
+    (display-buffer
+     buffer (if (with-current-buffer buffer (derived-mode-p 'magit-diff-mode))
+                '(display-buffer-pop-up-window)
+              '(display-buffer-same-window))))
+
+  (setq magit-display-buffer-function
+        #'bk/magit-display-diff-other-window)
+
   (require 'whitespace)
   (setq whitespace-line-column 80) ;; limit line length
   (setq whitespace-style '(face lines-tail))
@@ -644,6 +654,14 @@ before packages are loaded."
   ;; Javascript
   (add-hook 'js-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'js-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
+
+  (use-package direnv
+    :demand t
+    :config
+    (direnv-mode)
+    (setq direnv-always-show-summary nil)
+    :hook
+    ((prog-mode) . direnv-update-environment))
 
   (direnv-mode)
 
