@@ -82,10 +82,10 @@ This function should only modify configuration layer settings."
 
      ;; https://develop.spacemacs.org/layers/+lang/clojure/README.html
      (clojure :variables
-              clojure-enable-fancify-symbols t
+              ;; clojure-enable-fancify-symbols t
               clojure-enable-clj-refactor t
-              clojure-enable-linters '(clj-kondo joker)
-              clojure-enable-sayid nil
+              ;; clojure-enable-linters '(clj-kondo joker)
+              ;; clojure-enable-sayid nil
               clojure-backend 'cider)
      ;; clojure-lint
      ;; haskell
@@ -471,12 +471,12 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode t
+   dotspacemacs-smartparens-strict-mode nil
 
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc...
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
-   dotspacemacs-smart-closing-parenthesis t
+   dotspacemacs-smart-closing-parenthesis nil
 
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
@@ -502,7 +502,7 @@ It should only modify the values of Spacemacs settings."
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
    dotspacemacs-search-tools '(
-                               ;; "rg"
+                               "rg"
                                "ag"
                                "pt"
                                "ack"
@@ -637,6 +637,11 @@ before packages are loaded."
 
   (setq python-shell-completion-native-enable nil)
 
+
+  ;; Javascript
+  (add-hook 'js-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  (add-hook 'js-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
+
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Clojure configurations
   (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
@@ -645,8 +650,6 @@ before packages are loaded."
   (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?> "w")))
   (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?: "w")))
   (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-  ;; (add-hook 'clojure-mode-hook 'paredit-mode)
-  (add-hook 'clojure-mode-hook #'aggressive-indent-mode)
 
   ;; Clojurescript
   (add-hook 'clojurescript-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
@@ -657,9 +660,13 @@ before packages are loaded."
   (use-package parinfer-rust-mode
     :hook emacs-lisp-mode)
 
-  ;; Javascript
-  (add-hook 'js-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-  (add-hook 'js-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
+  (use-package cider
+    :custom
+    (cider-invert-insert-eval-p t)
+    (cider-switch-to-repl-on-insert nil)
+    (clojure-toplevel-inside-comment-form t)
+    (cider-print-fn 'pprint)
+    (cider-print-options `(("length" 50) ("right-margin" 70))))
 
   (use-package direnv
     :demand t
@@ -671,7 +678,12 @@ before packages are loaded."
 
   (direnv-mode)
 
-  (add-to-list 'projectile-globally-ignored-directories "*node_modules")
+  ;; (add-to-list 'projectile-globally-ignored-directories "node_modules")
+  
+  ;; Untested, but for now just disable 
+  ;; - smartparens-stric-mode
+  ;; - smart-closing-prenthesis 
+  ;; (remove-hook 'clojure-mode-hook 'smartparens-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
