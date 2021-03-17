@@ -640,23 +640,19 @@ before packages are loaded."
   (add-hook 'js-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'js-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
 
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; Clojure configurations
-  (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-  (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
-  (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?< "w")))
-  (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?> "w")))
-  (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?: "w")))
-  (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  ;; Clojure
 
-  ;; Clojurescript
-  (add-hook 'clojurescript-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-  (add-hook 'clojurescript-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
-  (add-hook 'clojurescript-mode-hook #'(lambda () (modify-syntax-entry ?< "w")))
-  (add-hook 'clojurescript-mode-hook #'(lambda () (modify-syntax-entry ?> "w")))
+  ;; (add-hook 'clojure-mode-hook #'(lambda ()
+  ;;                                  (message "FOOBAR 2")
+  ;;                                  (modify-syntax-entry ?- "w" clojure-mode-syntax-table)))
 
-  (use-package parinfer-rust-mode
-    :hook emacs-lisp-mode)
+  ;; (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
+  ;; (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  ;; (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?< "w")))
+  ;; (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?> "w")))
+  ;; (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?: "w")))
+
+  (add-hook 'clojure-mode-hook (lambda () (smartparens-mode -1)) 90)
 
   (use-package cider
     :custom
