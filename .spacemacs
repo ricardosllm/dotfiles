@@ -50,8 +50,8 @@ This function should only modify configuration layer settings."
      shell-scripts
      csv
      osx
-     ;; markdown
-     ;; sql
+     markdown
+     sql
 
      ;; Add tool tips to show doc string of functions
      ;; Show snippets in the autocompletion popup
@@ -70,33 +70,25 @@ This function should only modify configuration layer settings."
             shell-default-position 'bottom)
      spell-checking
 
-     ;; Use original flycheck fringe bitmaps
-     ;; (syntax-checking :variables
-     ;;                  syntax-checking-use-original-bitmaps t)
-
      git
      github
      version-control
 
-     ;; languages
-
      ;; https://develop.spacemacs.org/layers/+lang/clojure/README.html
      (clojure :variables
-              ;; clojure-enable-fancify-symbols t
               clojure-enable-clj-refactor t
-              ;; clojure-enable-linters '(clj-kondo joker)
-              ;; clojure-enable-sayid nil
               clojure-backend 'cider)
      ;; clojure-lint
      ;; haskell
      javascript
+     tern
      yaml
      html
      semantic
 
      ;; frameworks
      ;; salt
-     docker
+     ;; docker
 
      ;; tools
      gtags
@@ -121,16 +113,12 @@ This function should only modify configuration layer settings."
      nixos
      ;; typescript
 
-     ;; Enable asciidoc layer for editing asciidoc content
-     ;; Useful for docs.cider.mx editing
-     ;; asciidoc
 
      ;; Show commands as you type in a separate buffer
      ;; SPC a L displays key and command history in a separate buffer
      ;; command-log
 
-     ;; multiple-cursors
-     ;; treemacs
+     parinfer
 
      ;; TODO: try
      deft
@@ -147,7 +135,8 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages '(
                                       ;; wsd-mode
                                       exec-path-from-shell
-                                      parinfer-rust-mode
+                                      keypression
+
                                       envrc)
 
    ;; A list of packages that cannot be updated.
@@ -196,7 +185,7 @@ It should only modify the values of Spacemacs settings."
    ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
-   dotspacemacs-elpa-https t
+   dotspacemacs-elpa-https nil
 
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    ;; (default 5)
@@ -291,7 +280,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator arrow :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(doom :separator arrow :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -548,7 +537,13 @@ It should only modify the values of Spacemacs settings."
    ;; Run `spacemacs/prettify-org-buffer' when
    ;; visiting README.org files of Spacemacs.
    ;; (default nil)
-   dotspacemacs-pretty-docs nil))
+   dotspacemacs-pretty-docs nil
+
+   ;; Make your *scratch* buffer persistent. Everything you write down in
+   ;; *scratch* buffer will be automatically saved and restored. You can set
+   ;; variable dotspacemacs-scratch-buffer-persistent with a non-nil value in
+   ;; your .spacemacs file to enable this feature.
+   dotspacemacs-scratch-buffer-persistent t))
 
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
@@ -583,6 +578,10 @@ before packages are loaded."
    require-final-newline t
    hybrid-mode-enable-hjkl-bindings t
    tab-width 2)
+
+  (setq
+   doom-modeline-buffer-encoding nil
+   doom-modeline-modal-icon t)
 
   (global-set-key (kbd "<s-right>") 'move-end-of-line)
   (global-set-key (kbd "<s-left>") 'move-beginning-of-line)
@@ -627,7 +626,6 @@ before packages are loaded."
    whitespace-style '(face lines-tail))
   (add-hook 'prog-mode-hook 'whitespace-mode)
 
-  (setq projectile-enable-caching t)
   (setq term-char-mode-point-at-process-mark nil)
 
   ;; Python
@@ -642,9 +640,9 @@ before packages are loaded."
 
   ;; Clojure
 
-  ;; (add-hook 'clojure-mode-hook #'(lambda ()
-  ;;                                  (message "FOOBAR 2")
-  ;;                                  (modify-syntax-entry ?- "w" clojure-mode-syntax-table)))
+  ;; (dolist (c (string-to-list ":_-?!#*"))
+  ;;   (modify-syntax-entry c "w" clojure-mode-syntax-table))
+  ;; (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?- "w" clojure-mode-syntax-table)))
 
   ;; (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
   ;; (add-hook 'clojure-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
@@ -666,8 +664,21 @@ before packages are loaded."
     (interactive)
     (cider-connect-clj '(:host "localhost" :port 1667)))
 
-  (envrc-global-mode))
+  (envrc-global-mode)
 
+  ;;; ===== Keyperssion =====
+  ;; https://github.com/chuntaro/emacs-keypression
+  (setq keypression-use-child-frame nil
+        keypression-fade-out-delay 3.0
+        keypression-frame-justify 'keypression-left-justified
+        keypression-cast-command-name t
+        keypression-cast-command-name-format "%s  %s"
+        keypression-combine-same-keystrokes t
+        keypression-font-face-attribute '(:width normal :height 200 :weight bold))
+  (setq keypression-x-offset 400
+        keypression-y-offset 4)
+
+  ())
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
@@ -726,7 +737,8 @@ This function is called at the very end of Spacemacs initialization."
     '(parinfer-rust-mode flyspell-correct-helm flyspell-correct auto-dictionary autothemer dash magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht zenburn-theme zen-and-art-theme yapfify yaml-mode xterm-color wsd-mode ws-butler winum white-sand-theme which-key web-mode web-beautify volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme toc-org tide typescript-mode flycheck tern-auto-complete tern tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit sunny-day-theme sublime-themes subatomic256-theme subatomic-theme stickyfunc-enhance srefactor sql-indent spaceline powerline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode shell-pop seti-theme scss-mode sass-mode reverse-theme reveal-in-osx-finder restart-emacs rebecca-theme rainbow-mode rainbow-identifiers rainbow-delimiters railscasts-theme pyvenv pytest pyenv-mode py-isort purple-haze-theme pug-mode professional-theme popwin planet-theme pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el pbcopy paradox osx-trash osx-dictionary orgit organic-green-theme org-plus-contrib org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme nix-mode neotree naquadah-theme mwim mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc markdown-mode majapahit-theme magit-gitflow magit-popup madhat2r-theme macrostep lush-theme lorem-ipsum livid-mode skewer-mode simple-httpd live-py-mode linum-relative link-hint light-soap-theme launchctl js2-refactor js2-mode js-doc jbeans-theme jazz-theme ir-black-theme insert-shebang inkpot-theme indent-guide hy-mode dash-functional hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation heroku-theme hemisu-theme helm-themes helm-swoop helm-pydoc helm-projectile projectile helm-nixos-options helm-mode-manager helm-make helm-gtags helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme haml-mode gruber-darker-theme graphql-mode grandshell-theme gotham-theme google-translate golden-ratio gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md ggtags gandalf-theme fuzzy flx-ido flx flatui-theme flatland-theme fish-mode fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exotica-theme exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree espresso-theme eshell-z eshell-prompt-extras esh-help engine-mode emmet-mode elisp-slime-nav dumb-jump dracula-theme dockerfile-mode docker transient tablist json-mode docker-tramp json-snatcher json-reformat django-theme direnv diminish diff-hl darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme dactyl-mode cython-mode cyberpunk-theme csv-mode company-web web-completion-data company-statistics company-shell company-quickhelp pos-tip company-nixos-options nixos-options company-anaconda company command-log-mode column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized color-identifiers-mode coffee-mode clues-theme clojure-snippets clj-refactor hydra inflections multiple-cursors paredit lv clean-aindent-mode cider-eval-sexp-fu eval-sexp-fu cider sesman spinner queue pkg-info parseedn clojure-mode parseclj a epl cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme bind-map bind-key badwolf-theme auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed apropospriate-theme anti-zenburn-theme anaconda-mode pythonic f s ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adoc-mode markup-faces adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup gruvbox-theme))
   '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
   '(safe-local-variable-values
-    '((cider-clojure-cli-global-options . "-A:datomic-client:test:dev")
+    '((cider-clojure-cli-global-options . -A:dev:test)
+      (cider-clojure-cli-global-options . "-A:datomic-client:test:dev")
       (eval progn
             (pp-buffer)
             (indent-buffer)))))
@@ -735,3 +747,9 @@ This function is called at the very end of Spacemacs initialization."
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+
+
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
