@@ -3,6 +3,7 @@ if [ -e /Users/ricardo/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ricard
 eval "$(direnv hook zsh)"
 
 export PATH=/opt/homebrew/bin:$PATH
+export PATH=/Users/ricardo/.emacs.d.doom/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/ricardo/.oh-my-zsh"
@@ -33,8 +34,8 @@ select-word-style bash
 
 alias ls='/bin/ls -G'
 alias ll='ls -lah'
-alias e='emacsclient -n -s ~/.emacs.d/server-socket/server'
-alias et='emacsclient -nw -s ~/.emacs.d/server-socket/server'
+alias e="emacsclient -n -s $(cat ~/.config/chemacs/profile)"
+alias et="emacsclient -nw -s $(cat ~/.config/chemacs/profile)"
 
 alias finder='open -a "Finder"'
 
@@ -46,8 +47,6 @@ alias gitc='git checkout'
 alias gits='git status'
 alias gitd='git diff'
 alias gitp='git stash; git pull --rebase; git stash pop'
-
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # source "/Users/ricardo/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 

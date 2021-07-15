@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(;; ----------------------------------------------------------------
+   '(react
+     ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
@@ -58,10 +59,13 @@ This function should only modify configuration layer settings."
      ;; Show suggestions by most commonly used
      (auto-completion :variables
                       auto-completion-enable-help-tooltip t
-                      auto-completion-enable-snippets-in-popup t
-                      auto-completion-enable-sort-by-usage t)
+                      auto-completion-enable-sort-by-usage t
+                      ;; Optimal for lsp mode
+                      auto-completion-minimum-prefix-length 1
+                      auto-completion-idle-delay 0.0
+                      )
      ;; To have auto-completion on as soon as you start typing
-     (auto-completion :variables auto-completion-idle-delay nil)
+     ;; (auto-completion :variables auto-completion-idle-delay nil)
 
      ;; org
      search-engine
@@ -88,7 +92,7 @@ This function should only modify configuration layer settings."
 
      ;; frameworks
      ;; salt
-     ;; docker
+     docker
 
      ;; tools
      gtags
@@ -120,10 +124,13 @@ This function should only modify configuration layer settings."
 
      parinfer
 
-     ;; TODO: try
      deft
      imenu-list
-     syntax-checking)
+     syntax-checking
+
+     ;; TODO: try
+     ;; lsp
+     )
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -135,14 +142,16 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages '(
                                       ;; wsd-mode
                                       exec-path-from-shell
-                                      keypression
-
-                                      envrc)
+                                      ;; keypression
+                                      envrc
+                                      lsp-ui
+                                      )
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(company
+                                    )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and deletes any unused
@@ -591,6 +600,8 @@ before packages are loaded."
   ;; ~~> 'Y' yanks till the end of line instead of yanking the whole line.
   (define-key evil-normal-state-map (kbd "Y") (kbd "y$"))
 
+  (add-hook 'after-save-hook 'evil-escape)
+
   (add-hook 'focus-out-hook
             (defun save-current-buffer-if-needed ()
               (interactive)
@@ -598,7 +609,6 @@ before packages are loaded."
                 (save-buffer))))
 
   ;; After save hooks
-  (add-hook 'after-save-hook 'evil-escape)
 
   (when (string= system-type "darwin")
     (setq dired-use-ls-dired nil))
@@ -665,6 +675,7 @@ before packages are loaded."
     (cider-connect-clj '(:host "localhost" :port 1667)))
 
   (envrc-global-mode)
+  (global-company-mode)
 
   ;;; ===== Keyperssion =====
   ;; https://github.com/chuntaro/emacs-keypression
