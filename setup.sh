@@ -40,6 +40,9 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 ln -s $PWD/.spacemacs ~/.spacemacs
 ln -s $PWD/.emacs.d/private/snippets ~/.emacs.d/private/snippets
 
+# Intelij IdeaVim plugin
+ln -s $PWD/.ideavimrc ~/.ideavimrc
+
 # Hammerspoon
 ln -s $PWD/.hammerspoon/init.lua ~/.hammerspoon/init.lua
 
