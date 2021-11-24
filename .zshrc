@@ -17,7 +17,7 @@ DISABLE_UPDATE_PROMPT="true"
 
 
 plugins=(
-    osx
+    macos
     git
     zsh-autosuggestions
     zsh-syntax-highlighting
@@ -34,15 +34,17 @@ select-word-style bash
 
 alias ls='/bin/ls -G'
 alias ll='ls -lah'
-alias e="emacsclient -n -s $(cat ~/.config/chemacs/profile)"
+# alias e="emacsclient -n -s  $(cat ~/.config/chemacs/profile)"
 alias et="emacsclient -nw -s $(cat ~/.config/chemacs/profile)"
+alias e="emacsclient -n -s ${socket="/tmp/emacs${UID}/doom"}"
+alias i="idea"
 
 alias finder='open -a "Finder"'
 
 # Git
 alias gitpp='git stash; git pull --rebase; git push; git stash pop'
 alias gg='git grep'
-alias gp='git pull --rebase'
+alias gp='git set-upstream && git pull --rebase'
 alias gitc='git checkout'
 alias gits='git status'
 alias gitd='git diff'
