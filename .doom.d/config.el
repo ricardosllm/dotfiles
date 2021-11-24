@@ -75,3 +75,26 @@
 (map! :leader
       (:prefix ("g" . "git/versions-control")
        :desc "Status" "s" #'magit))
+
+;; Example
+;; (map! :leader
+;;       (:prefix-map ("a" . "applications")
+;;        (:prefix ("j" . "journal")
+;;         :desc "New journal entry" "j" #'org-journal-new-entry
+;;         :desc "Search journal entry" "s" #'org-journal-search)))
+
+(add-hook 'evil-insert-state-exit-hook
+          (lambda ()
+            (call-interactively #'save-buffer)))
+
+(add-function :after after-focus-change-function
+              (lambda () (evil-normal-state)))
+
+(setq server-socket-dir "/tmp/emacs501/")
+
+(modify-syntax-entry ?_ "w")
+
+(with-eval-after-load 'evil
+  (defalias #'forward-evil-word #'forward-evil-symbol)
+  ;; make evil-search-word look for symbol rather than word boundaries
+  (setq-default evil-symbol-word-search t))

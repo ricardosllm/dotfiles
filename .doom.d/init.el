@@ -58,7 +58,7 @@
        fold               ; (nigh) universal code folding
        ;;(format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
-       ;;lispy             ; vim for lisp, for people who don't like vim
+       ;; lispy             ; vim for lisp, for people who don't like vim
        ;;multiple-cursors  ; editing in many places at once
        ;;objed             ; text object editing for the innocent
        ;; (parinfer +rust)    ; turn lisp into python, sort of
@@ -153,7 +153,7 @@
        ;;purescript        ; javascript, but functional
        python            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
-       ;;racket            ; a DSL for DSLs
+       ;; racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
        ;;rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
@@ -190,7 +190,8 @@
 
 
        ;; spacemacs module https://github.com/chenyanming/spacemacs_module_for_doom
-       :private spacemacs)
+       :private spacemacs
+       )
 
 
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")

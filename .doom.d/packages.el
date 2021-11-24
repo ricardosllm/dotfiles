@@ -50,3 +50,6 @@
 ;(unpin! t)
 
 (package! winum)
+
+
+(package! persistent-scratch)
