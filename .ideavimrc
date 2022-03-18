@@ -8,3 +8,5 @@ set clipboard+=unnamed
 
 nmap <C-o> <Action>(Back)
 nmap <C-i> <Action>(GotoDeclaration)
+
+# nmap <S-D> <Action>(KillSexp)
