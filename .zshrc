@@ -53,3 +53,11 @@ alias gitp='git stash; git pull --rebase; git stash pop'
 # source "/Users/ricardo/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 PROMPT='%{$fg[yellow]%}[%D{%f/%m/%y} %D{%L:%M:%S}] '$PROMPT
+
+# Added by Toolbox App
+export PATH="$PATH:/Users/ricardo/Library/Application Support/JetBrains/Toolbox/scripts"
+
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/sbin:$PATH
+
+export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlighting/highlighters
