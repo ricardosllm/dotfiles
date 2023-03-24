@@ -11,19 +11,17 @@ defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 brew tap d12frosted/emacs-plus
 brew tap homebrew/cask-fonts
 
+
 # Window management
 ln -s $PWD/com.knollsoft.Rectangle.plist ~/Library/Preferences/com.knollsoft.Rectangle.plist
 
 # Install deps
 brew install \
      git \
-     the_silver_searcgit \
+     the_silver_searcher \
      ispell \
-     direnv \
      zsh-syntax-highlighting \
      spectacle \
-     awscli \
-     emacs-plus@27 --with-spacemacs-icon
 
 # zsh
 rm ~/.zshrc
@@ -31,11 +29,14 @@ ln -s $PWD/.zshrc ~/.zshrc
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Emacs
-mv /Applications/Emacs.app /Applications/Emacs-bak.app
-ln -s /usr/local/opt/emacs-plus@27/Emacs.app /Applications
+brew install emacs-plus@28 --with-native-comp
 
-# Spacemacs
+## Doom
 mv ~/.emacs.d ~/.emacs.d.bak
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d.doom
+~/.emacs.d.doom/bin/doom install
+
+
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 ln -s $PWD/.spacemacs ~/.spacemacs
 ln -s $PWD/.emacs.d/private/snippets ~/.emacs.d/private/snippets
@@ -43,15 +44,11 @@ ln -s $PWD/.emacs.d/private/snippets ~/.emacs.d/private/snippets
 # Intelij IdeaVim plugin
 ln -s $PWD/.ideavimrc ~/.ideavimrc
 
-# Hammerspoon
-ln -s $PWD/.hammerspoon/init.lua ~/.hammerspoon/init.lua
-
 # Install cask deps
 brew install --cask \
      osxfuse \
      secure-pipes \
      zerotier-one \
-     hammerspoon \
      font-source-code-pro \
      font-fira-mono \
      dropbox \
