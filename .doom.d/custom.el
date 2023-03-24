@@ -9,9 +9,9 @@
    '((inf-clojure-custom-repl-type . clojure)
      (inf-clojure-custom-startup . "clojure -A:test:dev")
      (cider-known-endpoints
-      ("api2 :dev" "13.213.14.185" "3001")
-      ("api2 :uat" "3.114.16.64" "3001")
-      ("api2 :prod" "13.229.46.189" "3001")))))
+      ("api2 :dev" "replion.predict.gini-dev.co" "3001")
+      ("api2 :uat" "replion.predict.gini-uat.co" "3001")
+      ("api2 :prod" "replion.predict.gini.co" "3001")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
