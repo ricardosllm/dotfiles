@@ -10,3 +10,7 @@ nmap <C-o> <Action>(Back)
 nmap <C-i> <Action>(GotoDeclaration)
 
 # nmap <S-D> <Action>(KillSexp)
+
+set ideajoin
+
+nnoremap Y y$
