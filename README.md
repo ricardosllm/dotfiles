@@ -17,8 +17,9 @@ A complete Nix-based configuration for macOS development environment with work/p
 
 ```bash
 # Clone the repository
-git clone https://github.com/ricardosllm/dotfiles ~/dotfiles
-cd ~/dotfiles
+mkdir -p ~/code
+git clone https://github.com/ricardosllm/dotfiles ~/code/dotfiles
+cd ~/code/dotfiles
 
 # Run the setup script
 ./scripts/nix-setup.sh
@@ -40,7 +41,7 @@ echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 
 3. **Build Configuration**:
 ```bash
-cd ~/dotfiles
+cd ~/code/dotfiles
 nix flake update
 darwin-rebuild switch --flake .
 ```
@@ -79,10 +80,10 @@ dotfiles/
 
 ```bash
 # Rebuild after configuration changes
-darwin-rebuild switch --flake ~/dotfiles
+darwin-rebuild switch --flake ~/code/dotfiles
 
 # Update all packages
-nix flake update ~/dotfiles
+nix flake update ~/code/dotfiles
 
 # Garbage collection
 nix-collect-garbage -d
@@ -97,17 +98,17 @@ Launch Claude Code in a sandboxed environment:
 claude
 
 # Or specify project name and path
-~/dotfiles/scripts/claude-sandbox.sh my-project /path/to/project
+~/code/dotfiles/scripts/claude-sandbox.sh my-project /path/to/project
 ```
 
 ### Profile Switching
 
 ```bash
 # Switch to work profile
-~/dotfiles/scripts/switch-profile.sh work
+~/code/dotfiles/scripts/switch-profile.sh work
 
 # Switch to personal profile
-~/dotfiles/scripts/switch-profile.sh personal
+~/code/dotfiles/scripts/switch-profile.sh personal
 ```
 
 ## Key Bindings

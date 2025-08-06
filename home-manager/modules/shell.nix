@@ -25,14 +25,14 @@
       gpl = "git pull";
       
       # Nix
-      rebuild = "darwin-rebuild switch --flake ~/dotfiles";
-      update = "nix flake update ~/dotfiles";
+      rebuild = "darwin-rebuild switch --flake ~/code/dotfiles";
+      update = "nix flake update ~/code/dotfiles";
       
       # Claude Code
-      claude = "~/dotfiles/scripts/claude-sandbox.sh";
+      claude = "~/code/dotfiles/scripts/claude-sandbox.sh";
       
       # Quick edits
-      dots = "cd ~/dotfiles && nvim";
+      dots = "cd ~/code/dotfiles && nvim";
     };
     
     initExtra = ''

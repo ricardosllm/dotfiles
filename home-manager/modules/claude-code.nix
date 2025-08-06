@@ -29,7 +29,7 @@
 
   # Add Claude Code aliases
   programs.zsh.shellAliases = {
-    claude = "~/dotfiles/scripts/claude-sandbox.sh";
-    cc = "~/dotfiles/scripts/claude-sandbox.sh";
+    claude = "~/code/dotfiles/scripts/claude-sandbox.sh";
+    cc = "~/code/dotfiles/scripts/claude-sandbox.sh";
   };
 }

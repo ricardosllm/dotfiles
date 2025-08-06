@@ -66,7 +66,7 @@
   programs.zsh.shellAliases = {
     work = "cd ~/work";
     gini = "cd ~/work/gini";
-    dotfiles = "cd ~/dotfiles";
+    dotfiles = "cd ~/code/dotfiles";
   };
 
   # This value determines the Home Manager release

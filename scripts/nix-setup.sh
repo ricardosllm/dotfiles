@@ -79,7 +79,7 @@ fi
 
 # Step 5: Build and switch to the Nix configuration
 log_info "Building and switching to Nix configuration..."
-cd ~/dotfiles
+cd ~/code/dotfiles
 
 # Initialize flake if lock file doesn't exist
 if [ ! -f "flake.lock" ]; then
@@ -117,7 +117,7 @@ EOF
 # Step 7: Setup iTerm2 preferences (if they exist)
 if [ -d "iterm2_profile" ]; then
     log_info "Configuring iTerm2..."
-    defaults write com.googlecode.iterm2.plist PrefsCustomFolder "$PWD/iterm2_profile"
+    defaults write com.googlecode.iterm2.plist PrefsCustomFolder "~/code/dotfiles/iterm2_profile"
     defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 fi
 
@@ -169,9 +169,9 @@ git config --global push.autoSetupRemote true
 # Step 12: Build Claude Code Docker image
 log_info "Building Claude Code sandbox Docker image..."
 if command -v docker &> /dev/null; then
-    docker build -t claude-sandbox:latest ~/dotfiles/templates/docker/claude-sandbox/
+    docker build -t claude-sandbox:latest ~/code/dotfiles/templates/docker/claude-sandbox/
 else
-    log_warn "Docker not found. Please install Docker Desktop and run: docker build -t claude-sandbox:latest ~/dotfiles/templates/docker/claude-sandbox/"
+    log_warn "Docker not found. Please install Docker Desktop and run: docker build -t claude-sandbox:latest ~/code/dotfiles/templates/docker/claude-sandbox/"
 fi
 
 # Step 13: Install Rosetta 2 for x86 compatibility (for Steam games)
@@ -196,9 +196,9 @@ echo "   - Work: cat ~/.ssh/id_ed25519_work.pub"
 echo "   - Personal: cat ~/.ssh/id_ed25519_personal.pub"
 echo ""
 echo "To rebuild configuration after changes:"
-echo "  darwin-rebuild switch --flake ~/dotfiles"
+echo "  darwin-rebuild switch --flake ~/code/dotfiles"
 echo ""
 echo "To update packages:"
-echo "  nix flake update ~/dotfiles"
+echo "  nix flake update ~/code/dotfiles"
 echo ""
 echo "=================================================================================="

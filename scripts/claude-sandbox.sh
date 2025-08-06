@@ -11,7 +11,7 @@ WORKSPACE="${2:-$(pwd)}"
 # Build image if needed
 if ! docker image inspect claude-sandbox:latest >/dev/null 2>&1; then
     echo "Building Claude sandbox image..."
-    docker build -t claude-sandbox:latest ~/dotfiles/templates/docker/claude-sandbox/
+    docker build -t claude-sandbox:latest ~/code/dotfiles/templates/docker/claude-sandbox/
 fi
 
 # Run container with restrictions
