@@ -4,6 +4,7 @@ eval "$(direnv hook zsh)"
 
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/Users/ricardo/.emacs.d.doom/bin:$PATH
+export PATH=/nix/store/s7dd5qi3fzjj8q5mmygi8pasp91n727c-nodejs-22.17.0/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/ricardo/.oh-my-zsh"
@@ -35,8 +36,8 @@ select-word-style bash
 alias ls='/bin/ls -G'
 alias ll='ls -lah'
 # alias e="emacsclient -n -s  $(cat ~/.config/chemacs/profile)"
-alias et="emacsclient -nw -s $(cat ~/.config/chemacs/profile)"
-alias e="emacsclient -n -s ${socket="/tmp/emacs${UID}/doom"}"
+#_alias et="emacsclient -nw -s $(cat ~/.config/chemacs/profile)"
+#_alias e="emacsclient -n -s ${socket="/tmp/emacs${UID}/doom"}"
 alias i="idea"
 
 alias finder='open -a "Finder"'
@@ -44,7 +45,7 @@ alias finder='open -a "Finder"'
 # Git
 alias gitpp='git stash; git pull --rebase; git push; git stash pop'
 alias gg='git grep'
-alias gp='git set-upstream && git pull --rebase'
+alias gp='git pull --rebase'
 alias gitc='git checkout'
 alias gits='git status'
 alias gitd='git diff'
@@ -61,3 +62,11 @@ export PATH=/opt/homebrew/bin:$PATH
 export PATH=/opt/homebrew/sbin:$PATH
 
 export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlighting/highlighters
+
+alias lvim="~/.local/bin/lvim"
+alias avim="NVIM_APPNAME=avim nvim"
+
+alias v="avim"
+
+setopt noautocd
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
