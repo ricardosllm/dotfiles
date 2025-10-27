@@ -4,7 +4,7 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Install deps
-xargs brew install < brew_deps.txt
+brew bundle --file brew-dump
 
 # zsh
 rm ~/.zshrc
